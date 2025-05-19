@@ -30,6 +30,6 @@ func main() {
 	http.HandleFunc("/create-collection", enableCORS(createCollectionHandler))
 	http.HandleFunc("/delete-collection", enableCORS(deleteCollectionHandler))
 	http.HandleFunc("/delete-point", enableCORS(deletePointHandler))
-	fmt.Println("🧠 Chisel API running on http://localhost:8080")
+	fmt.Println("🧠 Chisel API running on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
