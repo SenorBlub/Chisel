@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
+
+var httpPort = os.Getenv("PORT")
 
 func enableCORS(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -30,6 +33,6 @@ func main() {
 	http.HandleFunc("/create-collection", enableCORS(createCollectionHandler))
 	http.HandleFunc("/delete-collection", enableCORS(deleteCollectionHandler))
 	http.HandleFunc("/delete-point", enableCORS(deletePointHandler))
-	fmt.Println("🧠 Chisel API running on port 8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	fmt.Println("🧠 Chisel API running on port " + httpPort)
+	log.Fatal(http.ListenAndServe(":"+httpPort, nil))
 }
